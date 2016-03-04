@@ -1,0 +1,10 @@
+# Doxyfile - config settings
+#    to generate a new default Doxyfile use: doxygen -g
+#
+EXTRACT_ALL = YES
+MARKDOWN_SUPPORT = YES
+SE_MDFILE_AS_MAINPAGE = README.md
+OPTIMIZE_OUTPUT_FOR_C  = NO
+CLASS_DIAGRAMS
+CLASS_GRAPH
+UML_LOOK
