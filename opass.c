@@ -11,7 +11,8 @@
 
   22 Jan 2016 - v0.2 with minor updates to output to make consistent
   30 Jan 2016 - v0.3 minor cosmetic updates to output when run
-  
+  11 Apr 2016 - v0.4 offer 3 x three words passwords incl. random number
+
   About
   ¯¯¯¯¯¯
   Password creation tool using a pool of three letter English words
@@ -42,7 +43,7 @@
 /*-----------------------*/
 
 /* define the version of the program */
-char version[]="version: 0.3";
+char version[]="version: 0.4";
 /* control if debuging output is provided (0 == debug off; 1 == debug on;) */
 int debug = 0;
 /* control if an export of the three letter words is provided (0 == export off; 1 == export on;) */
@@ -54,7 +55,7 @@ int help = 0;
 /* number of words in the word array */
 int wordArraySize = 0;
 /* define how many random words we want to include for each password */
-int wordsRequired = 4;
+int wordsRequired = 3;
 /* define how many password suggestions we want to provide */
 int numPassSuggestions = 3;
 /* 
@@ -306,7 +307,7 @@ char *withSpaces(char *newpass)
 	if (debug)
 	{
 		printf("DEBUG: password received by function 'withSpaces' "
-			   "is: %s at %d characters length\n",
+			   "is: %s at %d characters in length\n",
 			   newpass,
 			   strlen(newpass) );
 	}
@@ -575,13 +576,16 @@ int main(int argc, char **argv)
 
 	printf("Suggested passwords are:\n\n");
 	printf("\tPassword:");
-	printf("\tWith spaces:\n");
+	printf("\tWith spaces:");
+	printf("\tRandom number:\n");
 	for (int x = 1; x <= numPassSuggestions; x++)
 	{
 		char *newpass = getRandom(wordsRequired);
 		char *spc_newpass = withSpaces(newpass);
 		printf("\t%s", newpass);
-		printf("\t%s\n", spc_newpass );
+		printf("\t%s", spc_newpass );
+		// get a random number between 0 and 9 twice 
+		printf("\t%d%d\n", rand() / (RAND_MAX / 9), rand() / (RAND_MAX / 9) );
 		// finished with *newpass and *spc_newpass now - so free memory up
 		free(newpass); newpass = NULL;
 		free(spc_newpass); spc_newpass = NULL;
