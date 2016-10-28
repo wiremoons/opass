@@ -153,3 +153,7 @@ val:
 # used by Emacs for 'flymake'
 check-syntax:
 	gcc -o nul -S ${CHK_SOURCES}
+
+# used to cross compile from Linix to Windows
+cwin32:
+	/usr/bin/i686-w64-mingw32-gcc -m32 -Ofast -flto -funroll-loops -Wall -std=gnu11 -o opass.exe opass.c

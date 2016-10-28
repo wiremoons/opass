@@ -11,7 +11,7 @@
 
   22 Jan 2016 - v0.2 with minor updates to output to make consistent
   30 Jan 2016 - v0.3 minor cosmetic updates to output when run
-  11 Apr 2016 - v0.4 offer 3 x three words passwords incl. random number
+  11 Apr 2016 - v0.4 offer 3 x three words passwords & incl. random number
 
   About
   ¯¯¯¯¯¯
@@ -577,7 +577,7 @@ int main(int argc, char **argv)
 	printf("Suggested passwords are:\n\n");
 	printf("\tPassword:");
 	printf("\tWith spaces:");
-	printf("\tRandom number:\n");
+	printf("\tRandom no:\n");
 	for (int x = 1; x <= numPassSuggestions; x++)
 	{
 		char *newpass = getRandom(wordsRequired);
