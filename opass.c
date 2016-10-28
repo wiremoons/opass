@@ -11,7 +11,8 @@
 
   22 Jan 2016 - v0.2 with minor updates to output to make consistent
   30 Jan 2016 - v0.3 minor cosmetic updates to output when run
-  11 Apr 2016 - v0.4 offer 3 x three words passwords & incl. random number
+  11 Apr 2016 - v0.4 offer 3 x three words passwords incl. random number
+  08 Jun 2016 - v0.5 minor chnage to debug output text
 
   About
   ¯¯¯¯¯¯
@@ -43,7 +44,7 @@
 /*-----------------------*/
 
 /* define the version of the program */
-char version[]="version: 0.4";
+char version[]="version: 0.5";
 /* control if debuging output is provided (0 == debug off; 1 == debug on;) */
 int debug = 0;
 /* control if an export of the three letter words is provided (0 == export off; 1 == export on;) */
@@ -498,7 +499,7 @@ char *getRandom(int wordsRequired)
 		int r = rand() / (RAND_MAX / wordArraySize +1);
 		// if debug - print out the randowm number obtained
 		// and the corresponding word in the aray at that location
-		if (debug) { printf("Random number generated is: %d with word: '%s'\n", r, *(words+r)); }
+		if (debug) { printf("Random number generated is: %d with matching word: '%s'\n", r, *(words+r)); }
 		// add the new word to the 'genPass' variable we allocated on heap earlier
 		strncat( genPass, *(words+r), strlen(*(words+r)) );
 	}
