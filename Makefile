@@ -144,7 +144,7 @@ opt: $(SRC)
 	$(CC) $(OPT-CFLAGS_$(ARCH)) -o $(OUTNAME)$(EXE_END) $(SRC) $(LIBFLAGS)
 
 clean:
-	$(RM) $(OUTNAME)$(EXE_END)
+	$(RM) $(OUTNAME) $(OUTNAME).exe
 
 # used to run valgrind memory leak checks
 val:
@@ -156,4 +156,4 @@ check-syntax:
 
 # used to cross compile from Linix to Windows
 cwin32:
-	/usr/bin/i686-w64-mingw32-gcc -m32 -Ofast -flto -funroll-loops -Wall -std=gnu11 -o opass.exe opass.c
+	/usr/bin/i686-w64-mingw32-gcc -m32 -Ofast -flto -funroll-loops -Wall -std=gnu11 -o opass.exe opass.c -static
