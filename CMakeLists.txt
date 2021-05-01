@@ -10,7 +10,7 @@ project(opass)
 # add list of c source code files to var ${SOURCES}
 file(GLOB SOURCES "./src/*.c")
 #
-# add location for built binary file
+# add location for built binary file
 #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 #
