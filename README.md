@@ -12,8 +12,8 @@ suggestions. The three letter words are randomly selected from the
 pool, creating password suggestions and displaying them on the screen
 for the user to select from.
 
-The opass program is is written in c, and is a command line /
-terminal based program. It should compile and then run on an platform
+The opass program is written in c, and is a command line /
+terminal based program. It should compile and then run on a platform
 that supports the c programming language, such as on Windows, Mac and
 Linux, FreeBSD, etc.
 
