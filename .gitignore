@@ -34,3 +34,7 @@
 # Compiled versions
 opass
 opass.exe
+
+# CMake files
+build
+bin
