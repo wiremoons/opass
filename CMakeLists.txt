@@ -19,10 +19,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 if(MSVC OR MSYS OR MINGW)
     # for detecting Windows compilers
     # add additional flags to standard ${CMAKE_C_FLAGS} - fix missing srandom/random libs
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall -Dsrandom=srand -Drandom=rand")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall -Dsrandom=srand -Drandom=rand -static")
 else()
     # add additional flags to standard ${CMAKE_C_FLAGS}
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall -static")
 endif()
 
 #
