@@ -1,3 +1,6 @@
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
+![](https://github.com/wiremoons/opass/workflows/opass-build/badge.svg)
+
 # Summary for `opass`
 
 A small application called 'opass' which is an abbreviation for 'offer

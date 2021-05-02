@@ -1,0 +1,29 @@
+name: opass-build
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt -y autoremove
+        sudo apt -y install build-essential cmake
+    - name: Create build env and Makefile with CMake
+      run: |
+        sh ./build.sh
+    - name: Build with 'make'
+      run: |
+        cd build/
+        make
+    - name : Test Run 'opass' App
+      run: |
+        cd bin/
+        ./opass -h
+        ./opass -v
+        ./opass
