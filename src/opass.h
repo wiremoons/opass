@@ -9,6 +9,7 @@
  * source:     https://github.com/wiremoons/opass
  *
  * originally created: 05 Jan 2016
+ * updated significantly: 01 May 2021
  *
  * The program is licensed under the "MIT License" see
  * http://opensource.org/licenses/MIT for more details.
@@ -18,23 +19,21 @@
 #ifndef OPASS_H_ /* Include guard */
 #define OPASS_H_
 
-char version[] = "version: 0.6.1"; /* define the version of the program */
-int export = 0;        /* export all words (0 == export off; 1 == export on;) */
-int quick = 0;         /* if -q is provided (0 == quick off; 1 == quick on;)*/
-int help = 0;          /* if -h is required (0 == help off; 1 == help on;) */
+#include "output.h" /* functions to display password program output */
+
+
+char version[] = "version: 0.7.0"; /* define the version of the program */
 int wordArraySize = 0; /* number of words in the word array */
 int wordsRequired = 3; /* number of random words per password */
-int numPassSuggestions = 3; /* number of password suggestions to provide */
+int numPassSuggestions = 5; /* number of password suggestions to provide */
 
 /* FUNCTION DECLARATIONS FOR opass.c */
 
-void show_banner(void);
-void show_help(void);
-void dump_words(void);
+void get_quick(void);
 char *get_random(int wordsRequired);
-char *with_spaces(char *newpass);
-void exit_cleanup(void);
-void get_cli_args(int argc, char **argv);
+char *with_spaces(char *str_password);
+//void exit_cleanup(void);
+//void get_cli_args(int argc, char **argv);
 
 /*
  *  char *words is a pointer to array of strings. Each string in the
