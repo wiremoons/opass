@@ -22,7 +22,7 @@ if(MSVC OR MSYS OR MINGW)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall -Dsrandom=srand -Drandom=rand -static")
 else()
     # add additional flags to standard ${CMAKE_C_FLAGS}
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall -static")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall")
 endif()
 
 #
