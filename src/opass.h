@@ -21,19 +21,18 @@
 
 #include "output.h" /* functions to display password program output */
 
+#define MAX_PASSWORDS 5
 
-char version[] = "version: 0.7.0"; /* define the version of the program */
+char version[] = "version: 0.7.1"; /* define the version of the program */
 int wordArraySize = 0; /* number of words in the word array */
 int wordsRequired = 3; /* number of random words per password */
-int numPassSuggestions = 5; /* number of password suggestions to provide */
 
 /* FUNCTION DECLARATIONS FOR opass.c */
 
 void get_quick(void);
 char *get_random(int wordsRequired);
 char *with_spaces(char *str_password);
-//void exit_cleanup(void);
-//void get_cli_args(int argc, char **argv);
+
 
 /*
  *  char *words is a pointer to array of strings. Each string in the

@@ -36,7 +36,7 @@ void show_help() {
  * show_version displays a summary of the version information
  * available in the program.
  */
-void show_version(char *program_name) {
+void show_version(char *program_name, int numPassSuggestions) {
     printf("%s is: %s\n", program_name, version);
 
     /* display some stats about passwords being generated */

@@ -13,10 +13,26 @@
 #include <ctype.h>  /* isdigit */
 #include <errno.h>  /* strerror */
 #include <stdio.h>  /* printf, fprintf */
-#include <stdlib.h> /* malloc, srandom, random */
+#include <stdlib.h> /* malloc, srandom, random, env */
 #include <string.h> /* strncat */
 #include <time.h>   /* time */
 
+/*
+ * 'set_number_passwords()' set the number of passwords to display as output
+ * Get number from user via environment variable 'OPASS_NUM' or uses defined
+ * MAX_PASSWORRDS as a default
+ */
+int set_number_passwords(void) {
+    int result = getenv("OPASS_NUM") ? (atoi(getenv("OPASS_NUM"))) : MAX_PASSWORDS;
+    printf("\ncurrent: %d\n", result);
+
+    if ((isdigit(result) != 0) || (result < 1 || result > 50)) {
+        printf("\nreseting: %d\n", result);
+        result = MAX_PASSWORDS;
+    }
+    printf("\nreturning: %d\n", result);
+    return result;
+}
 
 /*
  * 'with_spaces()' adds a spaces at every third character position in the
@@ -131,6 +147,11 @@ void get_quick(void) {
 
 int main(int argc, char **argv) {
 
+    /* set the number of passwords to provide as output */
+    int numPassSuggestions = set_number_passwords();
+
+    printf("\nfinal: %d\n",numPassSuggestions);
+
     /* get total number of 3 letter words in our array of three letter words
    *[wordArraySize] [4] */
     wordArraySize = sizeof(words) / sizeof(words[0]);
@@ -163,7 +184,7 @@ int main(int argc, char **argv) {
 
         if (strcmp(argv[1], "-v") == 0 ||
             strcmp(argv[1], "--version") == 0) {
-            show_version(argv[0]);
+            show_version(argv[0],numPassSuggestions);
             return (EXIT_SUCCESS);
         }
     }
