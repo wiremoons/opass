@@ -19,16 +19,22 @@
  */
 void show_help() {
     printf(""
-           "\nOffer Password (opass)\n\n"
+           "\nOffer Password (opass) Help.\n\n"
+           "A number of command line flags can be specified which are listed below.\n"
+           "Additionally environment variables can be used to control offered password configuration:\n\n"
+           " - OPASS_WORDS=<number of three letter words to include>\n"
+           " - OPASS_NUM=<number of passwords to offer>\n\n"
+           "These can be set in the shell, or just given when needed on the command line.\n\n\n"
+           "Example usage 1:  ./opass\n\n"
+           "Shows default usage provides the equivalent command of:  OPASS_WORDS=3 OPASS_NUM=5 ./opass\n\n"
+           "Example usage 2:  OPASS_WORDS=7 OPASS_NUM=8 ./opass\n\n"
+           "Usage ensures a minimum of seven random three letter words are included and eight different\n"
+           "password choices will be offered to the user to select from.\n\n\n"
            "Help Summary: the following command line switches can be used:\n\n"
-           "  -e    Export  - dump the full list of three letter words and marks\n"
-           "  -h    Help    - show this help information\n"
-           "  -q    Quick   - just offer a password and no other output\n"
-           "  -v    Version - display the version of the program\n"
-           "  -w ?  Words   - specify how many three letter words make up "
-           "the password (? == digits)\n"
-           "  -s ?  Suggest - specify how different passwords to offer (? "
-           "== digits)\n");
+           "  -e, --export     Dump the full list of three letter words and marks.\n"
+           "  -h, --help       Show this help information.\n"
+           "  -q, --quick      Just offer a password and no other output.\n"
+           "  -v, --version    Display the version of the program and password stats.\n");
 }
 
 
