@@ -36,13 +36,15 @@ void show_help() {
  * show_version displays a summary of the version information
  * available in the program.
  */
-void show_version(char *program_name, int numPassSuggestions) {
+void show_version(char *program_name, int numPassSuggestions, int marksArraySize, int wordsRequired) {
     printf("%s is: %s\n", program_name, version);
 
     /* display some stats about passwords being generated */
     printf("Application Stats:\n");
     printf("  - Number of three letter words available: ");
     printf("%d\n", wordArraySize);
+    printf("  - Number of marks (#..@) available: ");
+    printf("%d\n", marksArraySize);
     printf("  - Number of words per suggested password: ");
     printf("%d\n", wordsRequired);
     printf("  - Password character length will be: ");

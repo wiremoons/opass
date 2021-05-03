@@ -21,12 +21,11 @@
 
 extern char version[];
 extern int wordArraySize;
-extern int wordsRequired;
-extern char *words[];
+extern const char *words[];
 
 void dump_words();
 void show_help(void);
-void show_version(char *program_name, int numPassSuggestions);
+void show_version(char *program_name, int numPassSuggestions, int marksArraySize, int wordsRequired);
 
 
 #endif //OPASS_OUTPUT_H

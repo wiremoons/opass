@@ -22,24 +22,30 @@
 #include "output.h" /* functions to display password program output */
 
 #define MAX_PASSWORDS 5
+#define MAX_WORDS 3
 
-char version[] = "version: 0.7.1"; /* define the version of the program */
+char version[] = "version: 0.7.3"; /* define the version of the program */
 int wordArraySize = 0; /* number of words in the word array */
-int wordsRequired = 3; /* number of random words per password */
+int marksArraySize = 0; /* number of characters in the marks array */
+//int wordsRequired = 3; /* number of random words per password */
 
 /* FUNCTION DECLARATIONS FOR opass.c */
 
-void get_quick(void);
-char *get_random(int wordsRequired);
+void get_quick(int wordsRequired);
+char *get_random_password_str(int wordsRequired);
 char *with_spaces(char *str_password);
 
+/*
+ *  char *Mar is a pointer to array of strings. Each string in the
+ *  array contains a single character.
+ */
+const char *marks[] = {"#", ".", ";", "@", "%", ":", "!", ">", "-", "<"};
 
 /*
  *  char *words is a pointer to array of strings. Each string in the
  *  array contains a three letter english word
  */
-
-char *words[] = {
+const char *words[] = {
     "aah", "aal", "aas", "aba", "abb", "abo", "abs", "aby", "ace", "ach", "act",
     "add", "ado", "ads", "adz", "aff", "aft", "aga", "age", "ago", "ags", "aha",
     "ahi", "ahs", "aia", "aid", "ail", "aim", "ain", "air", "ais", "ait", "aka",

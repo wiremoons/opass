@@ -35,6 +35,22 @@ int set_number_passwords(void) {
 }
 
 /*
+ * 'set_number_words()' set the number of words to use to create a password string.
+ * Get number from user via environment variable 'OPASS_WORDS' or uses defined
+ * MAX_WORDS as a default
+ */
+int set_number_words(void) {
+    int result = getenv("OPASS_WORDS") ? (atoi(getenv("OPASS_WORDS"))) : MAX_WORDS;
+    printf("\ncurrent: %d\n", result);
+
+    if ((isdigit(result) != 0) || (result < 1 || result > 50)) {
+        printf("\nreseting: %d\n", result);
+        result = MAX_WORDS;
+    }
+    printf("\nreturning: %d\n", result);
+    return result;
+}
+/*
  * 'with_spaces()' adds a spaces at every third character position in the
  * 'str_password' string received via a pointer to this function. Returns a pointer to a new
  * string 'str_newpass' with the spaces added.
@@ -99,12 +115,10 @@ char *with_spaces(char *str_password) {
 }
 
 /*
- * 'get_random()' gets a string created from randomly selected words
+ * 'get_random_password_str()' gets a string created from randomly selected words
  * from the three letter word array.
- *
- *
  */
-char *get_random(int wordsRequired) {
+char *get_random_password_str(int wordsRequired) {
     /* Allocate a new char pointer (string) to hold the generated
      password that will be allocated on the heap - so will exist
      after function ends. Words are three chars in length times
@@ -114,7 +128,7 @@ char *get_random(int wordsRequired) {
     if (NULL == generated_password) {
         fprintf(
                 stderr,
-                "Error allocating memory in function 'get_random()': %s\n",
+                "Error allocating memory in function 'get_random_password_str()': %s\n",
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
@@ -134,8 +148,8 @@ char *get_random(int wordsRequired) {
 }
 
 /* Quick output was requested via command line option '-q' or '--quick' */
-void get_quick(void) {
-    char *newpass = get_random(wordsRequired);
+void get_quick(wordsRequired) {
+    char *newpass = get_random_password_str(wordsRequired);
     printf("%s\n", newpass);
     free(newpass);
     newpass = NULL;
@@ -149,12 +163,19 @@ int main(int argc, char **argv) {
 
     /* set the number of passwords to provide as output */
     int numPassSuggestions = set_number_passwords();
+    printf("\nfinal: %d\n", numPassSuggestions);
 
-    printf("\nfinal: %d\n",numPassSuggestions);
+    /* number of random words per password */
+    int wordsRequired = set_number_words();;
+    printf("\nfinal: %d\n", wordsRequired);
 
     /* get total number of 3 letter words in our array of three letter words
-   *[wordArraySize] [4] */
+       [wordArraySize] [4] */
     wordArraySize = sizeof(words) / sizeof(words[0]);
+
+    /* get total number of marks character in our array
+       [wordArraySize] [4] */
+    marksArraySize = sizeof(marks) / sizeof(marks[0]);
 
     /* seed random with the current time in seconds since the
      * Epoch done once - used as is global value for programs
@@ -172,7 +193,7 @@ int main(int argc, char **argv) {
 
         if (strcmp(argv[1], "-q") == 0 ||
             strcmp(argv[1], "--quick") == 0) {
-            get_quick();
+            get_quick(wordsRequired);
             return (EXIT_SUCCESS);
         }
 
@@ -184,14 +205,14 @@ int main(int argc, char **argv) {
 
         if (strcmp(argv[1], "-v") == 0 ||
             strcmp(argv[1], "--version") == 0) {
-            show_version(argv[0],numPassSuggestions);
+            show_version(argv[0], numPassSuggestions, marksArraySize, wordsRequired);
             return (EXIT_SUCCESS);
         }
     }
 
     printf("Suggested passwords are:\n\n");
     for (int x = 1; x <= numPassSuggestions; x++) {
-        char *newpass = get_random(wordsRequired);
+        char *newpass = get_random_password_str(wordsRequired);
         char *spc_newpass = with_spaces(newpass);
         printf("%s", spc_newpass);
         printf("\t%s", newpass);
