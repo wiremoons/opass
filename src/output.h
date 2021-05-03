@@ -21,7 +21,9 @@
 
 extern char version[];
 extern int wordArraySize;
+extern int marksArraySize;
 extern const char *words[];
+extern const char *marks[];
 
 void dump_words();
 void show_help(void);

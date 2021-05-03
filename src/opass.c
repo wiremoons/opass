@@ -10,6 +10,7 @@
 
 #include "opass.h"
 
+#include <assert.h> /* assert */
 #include <ctype.h>  /* isdigit */
 #include <errno.h>  /* strerror */
 #include <stdio.h>  /* printf, fprintf */
@@ -20,7 +21,7 @@
 /*
  * 'set_number_passwords()' set the number of passwords to display as output
  * Get number from user via environment variable 'OPASS_NUM' or uses defined
- * MAX_PASSWORRDS as a default
+ * MAX_PASSWORDS as a default
  */
 int set_number_passwords(void) {
     int result = getenv("OPASS_NUM") ? (atoi(getenv("OPASS_NUM"))) : MAX_PASSWORDS;
@@ -50,6 +51,7 @@ int set_number_words(void) {
     printf("\nreturning: %d\n", result);
     return result;
 }
+
 /*
  * 'with_spaces()' adds a spaces at every third character position in the
  * 'str_password' string received via a pointer to this function. Returns a pointer to a new
@@ -61,7 +63,8 @@ char *with_spaces(char *str_password) {
      * the spaces needed. All words in the passwords are 3
      * characters in length - so divide password length by 3.
      * Answer will give number of spaces required plus 1 for the
-     * '\0' on the end of the new string
+     * '\0' on the end of the new string. No space is added to the
+     * end of the string - so the one extra will be used for the '\0'
      */
     size_t length = (strlen(str_password) + (strlen(str_password) / 3));
     char *str_newpass = malloc(sizeof(char) * length);
@@ -169,17 +172,14 @@ int main(int argc, char **argv) {
     int wordsRequired = set_number_words();;
     printf("\nfinal: %d\n", wordsRequired);
 
-    /* get total number of 3 letter words in our array of three letter words
-       [wordArraySize] [4] */
+    /* get total number of 3 letter words in our array of three letter words */
     wordArraySize = sizeof(words) / sizeof(words[0]);
 
-    /* get total number of marks character in our array
-       [wordArraySize] [4] */
+    /* get total number of mark characters in our array */
     marksArraySize = sizeof(marks) / sizeof(marks[0]);
 
     /* seed random with the current time in seconds since the
-     * Epoch done once - used as is global value for programs
-     * life */
+     * Epoch done once - used as is global value for programs life */
     srandom(time(NULL));
 
     /* obtain any command line args from the user and action them */
@@ -216,6 +216,8 @@ int main(int argc, char **argv) {
         char *spc_newpass = with_spaces(newpass);
         printf("%s", spc_newpass);
         printf("\t%s", newpass);
+        /* random mark  */
+        printf("\t%s", marks[(random() % marksArraySize)]);
         /* random number 0 .. 99 display leading 0 */
         printf("\t%02ld\n", (random() % 99));
         /* finished with *newpass and *spc_newpass now - so free memory

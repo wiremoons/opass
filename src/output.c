@@ -21,7 +21,7 @@ void show_help() {
     printf(""
            "\nOffer Password (opass)\n\n"
            "Help Summary: the following command line switches can be used:\n\n"
-           "  -e    Export  - dump the full list of three letter words\n"
+           "  -e    Export  - dump the full list of three letter words and marks\n"
            "  -h    Help    - show this help information\n"
            "  -q    Quick   - just offer a password and no other output\n"
            "  -v    Version - display the version of the program\n"
@@ -53,16 +53,24 @@ void show_version(char *program_name, int numPassSuggestions, int marksArraySize
     printf("%d\n\n", numPassSuggestions);
 }
 
-
 /*
- * dump out the complete list of words held in our words array
+ * dump out the complete list of words and marks held in our arrays
  */
 void dump_words() {
     int i = 0;
+    int m = 0;
 
+    printf("Words used:\n");
     while (i < wordArraySize) {
         printf("%s ", *(words + i));
         i++;
+    }
+    printf("\n");
+
+    printf("Marks used:\n");
+    while (m < marksArraySize) {
+        printf("%s ", *(marks + m));
+        m++;
     }
     printf("\n");
 }
