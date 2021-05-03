@@ -14,13 +14,9 @@ jobs:
         sudo apt update
         sudo apt -y autoremove
         sudo apt -y install build-essential cmake
-    - name: Create build env and Makefile with CMake
+    - name: Create build CMake
       run: |
-        sh ./build.sh
-    - name: Build with 'make'
-      run: |
-        cd build/
-        make
+        ./build.sh
     - name : Test Run 'opass' App
       run: |
         cd bin/
