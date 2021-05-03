@@ -27,7 +27,7 @@ extern const char *marks[];
 
 void dump_words();
 void show_help(void);
-void show_version(char *program_name, int numPassSuggestions, int marksArraySize, int wordsRequired);
+void show_version(char *program_name, int numPassSuggestions, int wordsRequired);
 
 
 #endif //OPASS_OUTPUT_H

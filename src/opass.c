@@ -204,7 +204,7 @@ int main(int argc, char **argv) {
 
         if (strcmp(argv[1], "-v") == 0 ||
             strcmp(argv[1], "--version") == 0) {
-            show_version(argv[0], numPassSuggestions, marksArraySize, wordsRequired);
+            show_version(argv[0], numPassSuggestions, wordsRequired);
             return (EXIT_SUCCESS);
         }
     }

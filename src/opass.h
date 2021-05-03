@@ -24,7 +24,7 @@
 #define MAX_PASSWORDS 5
 #define MAX_WORDS 3
 
-char version[] = "version: 0.7.4"; /* define the version of the program */
+char version[] = "version: 0.7.5"; /* define the version of the program */
 int wordArraySize = 0; /* number of words in the word array */
 int marksArraySize = 0; /* number of characters in the marks array */
 
