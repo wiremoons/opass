@@ -151,7 +151,7 @@ char *get_random_password_str(int wordsRequired) {
 }
 
 /* Quick output was requested via command line option '-q' or '--quick' */
-void get_quick(wordsRequired) {
+void get_quick(int wordsRequired) {
     char *newpass = get_random_password_str(wordsRequired);
     printf("%s\n", newpass);
     free(newpass);
