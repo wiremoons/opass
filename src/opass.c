@@ -10,7 +10,6 @@
 
 #include "opass.h"
 
-#include <assert.h> /* assert */
 #include <ctype.h>  /* isdigit */
 #include <errno.h>  /* strerror */
 #include <stdio.h>  /* printf, fprintf */
