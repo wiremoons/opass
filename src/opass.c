@@ -19,8 +19,8 @@
 
 /*
  * 'set_number_passwords()' set the number of passwords to display as output
- * Get number from user via environment variable 'OPASS_NUM' or uses defined
- * MAX_PASSWORDS as a default
+ * Get number from user via environment variable 'OPASS_NUM' or uses the
+ * defined MAX_PASSWORDS as a default
  */
 int set_number_passwords(void) {
     int result = getenv("OPASS_NUM") ? (atoi(getenv("OPASS_NUM"))) : MAX_PASSWORDS;
