@@ -30,9 +30,11 @@ int marksArraySize = 0; /* number of characters in the marks array */
 
 /* FUNCTION DECLARATIONS FOR opass.c */
 
-void get_quick(int wordsRequired);
-char *get_random_password_str(int wordsRequired);
+int set_number_passwords(void);
+int set_number_words(void);
 char *with_spaces(char *str_password);
+char *get_random_password_str(int wordsRequired);
+void get_quick(int wordsRequired);
 
 /*
  *  char *Mar is a pointer to array of strings. Each string in the
