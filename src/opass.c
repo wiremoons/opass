@@ -22,41 +22,40 @@
  * Get number from user via environment variable 'OPASS_NUM' or uses the
  * defined MAX_PASSWORDS as a default
  */
-int set_number_passwords(void) {
-    int result = getenv("OPASS_NUM") ? (atoi(getenv("OPASS_NUM"))) : MAX_PASSWORDS;
-    printf("\ncurrent: %d\n", result);
+int set_number_passwords(void)
+{
+    int result =
+        getenv("OPASS_NUM") ? (atoi(getenv("OPASS_NUM"))) : MAX_PASSWORDS;
 
     if ((isdigit(result) != 0) || (result < 1 || result > 50)) {
-        printf("\nreseting: %d\n", result);
         result = MAX_PASSWORDS;
     }
-    printf("\nreturning: %d\n", result);
     return result;
 }
 
 /*
- * 'set_number_words()' set the number of words to use to create a password string.
- * Get number from user via environment variable 'OPASS_WORDS' or uses defined
- * MAX_WORDS as a default
+ * 'set_number_words()' set the number of words to use to create a password
+ * string. Get number from user via environment variable 'OPASS_WORDS' or uses
+ * defined MAX_WORDS as a default
  */
-int set_number_words(void) {
-    int result = getenv("OPASS_WORDS") ? (atoi(getenv("OPASS_WORDS"))) : MAX_WORDS;
-    printf("\ncurrent: %d\n", result);
+int set_number_words(void)
+{
+    int result =
+        getenv("OPASS_WORDS") ? (atoi(getenv("OPASS_WORDS"))) : MAX_WORDS;
 
     if ((isdigit(result) != 0) || (result < 1 || result > 50)) {
-        printf("\nreseting: %d\n", result);
         result = MAX_WORDS;
     }
-    printf("\nreturning: %d\n", result);
     return result;
 }
 
 /*
  * 'with_spaces()' adds a spaces at every third character position in the
- * 'str_password' string received via a pointer to this function. Returns a pointer to a new
- * string 'str_newpass' with the spaces added.
+ * 'str_password' string received via a pointer to this function. Returns a
+ * pointer to a new string 'str_newpass' with the spaces added.
  */
-char *with_spaces(char *str_password) {
+char *with_spaces(char *str_password)
+{
     /*
      * get memory for a new string to contain the password plus
      * the spaces needed. All words in the passwords are 3
@@ -69,8 +68,7 @@ char *with_spaces(char *str_password) {
     char *str_newpass = malloc(sizeof(char) * length);
 
     if (NULL == str_newpass) {
-        fprintf(
-                stderr,
+        fprintf(stderr,
                 "Error allocating memory in function 'with_spaces()': %snp\n",
                 strerror(errno));
         exit(EXIT_FAILURE);
@@ -117,10 +115,11 @@ char *with_spaces(char *str_password) {
 }
 
 /*
- * 'get_random_password_str()' gets a string created from randomly selected words
- * from the three letter word array.
+ * 'get_random_password_str()' gets a string created from randomly selected
+ * words from the three letter word array.
  */
-char *get_random_password_str(int wordsRequired) {
+char *get_random_password_str(int wordsRequired)
+{
     /* Allocate a new char pointer (string) to hold the generated
      password that will be allocated on the heap - so will exist
      after function ends. Words are three chars in length times
@@ -128,9 +127,9 @@ char *get_random_password_str(int wordsRequired) {
     char *generated_password = malloc(((sizeof(char) * 3) * wordsRequired) + 1);
 
     if (NULL == generated_password) {
-        fprintf(
-                stderr,
-                "Error allocating memory in function 'get_random_password_str()': %s\n",
+        fprintf(stderr,
+                "Error allocating memory in function "
+                "'get_random_password_str()': %s\n",
                 strerror(errno));
         exit(EXIT_FAILURE);
     }
@@ -140,7 +139,7 @@ char *get_random_password_str(int wordsRequired) {
     for (int x = 1; x <= wordsRequired; x++) {
         /* get a random number constrained by the size of the word array */
         long r = (random() % wordArraySize);
-        //printf("DEBUG: word array random number: %ld\n",r);
+        // printf("DEBUG: word array random number: %ld\n",r);
         /* add the new word to the 'generated_password' variable we allocated on
          * heap earlier */
         strncat(generated_password, *(words + r), strlen(*(words + r)));
@@ -150,7 +149,8 @@ char *get_random_password_str(int wordsRequired) {
 }
 
 /* Quick output was requested via command line option '-q' or '--quick' */
-void get_quick(int wordsRequired) {
+void get_quick(int wordsRequired)
+{
     char *newpass = get_random_password_str(wordsRequired);
     printf("%s\n", newpass);
     free(newpass);
@@ -161,15 +161,14 @@ void get_quick(int wordsRequired) {
 /* MAIN - Program starts here    */
 /*-------------------------------*/
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 
     /* set the number of passwords to provide as output */
     int numPassSuggestions = set_number_passwords();
-    printf("\nfinal: %d\n", numPassSuggestions);
 
     /* number of random words per password */
-    int wordsRequired = set_number_words();;
-    printf("\nfinal: %d\n", wordsRequired);
+    int wordsRequired = set_number_words();
 
     /* get total number of 3 letter words in our array of three letter words */
     wordArraySize = sizeof(words) / sizeof(words[0]);
@@ -184,26 +183,22 @@ int main(int argc, char **argv) {
     /* obtain any command line args from the user and action them */
     if (argc > 1) {
 
-        if (strcmp(argv[1], "-h") == 0 ||
-            strcmp(argv[1], "--help") == 0) {
+        if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
             show_help();
             return (EXIT_SUCCESS);
         }
 
-        if (strcmp(argv[1], "-q") == 0 ||
-            strcmp(argv[1], "--quick") == 0) {
+        if (strcmp(argv[1], "-q") == 0 || strcmp(argv[1], "--quick") == 0) {
             get_quick(wordsRequired);
             return (EXIT_SUCCESS);
         }
 
-        if (strcmp(argv[1], "-e") == 0 ||
-            strcmp(argv[1], "--export") == 0) {
+        if (strcmp(argv[1], "-e") == 0 || strcmp(argv[1], "--export") == 0) {
             dump_words();
             return (EXIT_SUCCESS);
         }
 
-        if (strcmp(argv[1], "-v") == 0 ||
-            strcmp(argv[1], "--version") == 0) {
+        if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) {
             show_version(argv[0], numPassSuggestions, wordsRequired);
             return (EXIT_SUCCESS);
         }
