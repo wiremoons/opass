@@ -8,6 +8,15 @@ project(opass)
 # enable verbose output
 set(CMAKE_VERBOSE_MAKEFILE on)
 #
+# -DVERSION=`date "+%Y-%m-%d @ %H:%M"`
+
+# check if CMake 'debug' build is being used?
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    add_definitions(-DDEBUG=1)
+endif()
+
+
+#
 # add list of C source code files to var ${SOURCES}
 file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/src/*.c")
 #

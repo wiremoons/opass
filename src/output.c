@@ -45,9 +45,18 @@ void show_help() {
  * available in the program.
  */
 void show_version(char *program_name, int numPassSuggestions, int wordsRequired) {
+
+#if DEBUG
+    char Build_Type[] = "Debug";
+#else
+    char Build_Type[] = "Release";
+#endif
+
     printf("\n'%s' is version: '%s'.\n", program_name, version);
+    printf("Compiled on: '%s @ %s' with C source built as '%s'.\n",__DATE__,__TIME__,Build_Type);
     puts("Copyright (c) 2021 Simon Rowe.\n");
     puts("For licenses and further information visit:");
+
     puts("- https://github.com/wiremoons/opass/");
 
     /* display some stats about passwords being generated */
@@ -88,3 +97,15 @@ void dump_words() {
     }
     printf("\n");
 }
+
+
+
+//#if defined(_MSC_VER)
+//   char Compiler_Type{} = _MSC_VER;
+//#elif defined(__clang__)
+//    CLANG __clang_major__ __clang_minor__
+//#elif defined(__GNUG__)
+//    GCC __GNUC__ __GNUC_MINOR__
+//#else
+//    UNKNOWN 0 0
+//#endif
