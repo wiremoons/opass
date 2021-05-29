@@ -27,7 +27,7 @@ endif()
 
 #
 # give final executable name and the C source code files required to build it
-add_executable(opass ${SOURCES} src/output.c src/output.h)
+add_executable(opass ${SOURCES})
 #
 # list the names of the C libraries to link against: pthreads readline dl
 target_link_libraries(opass ${CMAKE_DL_LIBS})
