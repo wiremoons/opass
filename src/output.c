@@ -45,7 +45,10 @@ void show_help() {
  * available in the program.
  */
 void show_version(char *program_name, int numPassSuggestions, int wordsRequired) {
-    printf("%s is: %s\n", program_name, version);
+    printf("\n'%s' is version: '%s'.\n", program_name, version);
+    puts("Copyright (c) 2021 Simon Rowe.\n");
+    puts("For licenses and further information visit:");
+    puts("- https://github.com/wiremoons/opass/");
 
     /* display some stats about passwords being generated */
     printf("\nApplication Password Stats:\n");
