@@ -6,14 +6,14 @@ cmake_minimum_required(VERSION 3.6)
 project(opass)
 #
 # enable verbose output
-#set(CMAKE_VERBOSE_MAKEFILE on)
+set(CMAKE_VERBOSE_MAKEFILE on)
 #
-# add list of c source code files to var ${SOURCES}
-file(GLOB SOURCES "./src/*.c")
+# add list of C source code files to var ${SOURCES}
+file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/src/*.c")
 #
 # add location for built binary file
 #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
 # set different compiler flags for Windows vs other OS
 if(MSVC OR MSYS OR MINGW)
