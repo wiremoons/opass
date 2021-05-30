@@ -6,16 +6,14 @@ cmake_minimum_required(VERSION 3.6)
 project(opass)
 #
 # enable verbose output
-set(CMAKE_VERBOSE_MAKEFILE on)
+#set(CMAKE_VERBOSE_MAKEFILE on)
 #
 # -DVERSION=`date "+%Y-%m-%d @ %H:%M"`
-
+#
 # check if CMake 'debug' build is being used?
 if (CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DDEBUG=1)
 endif()
-
-
 #
 # add list of C source code files to var ${SOURCES}
 file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/src/*.c")
@@ -33,7 +31,8 @@ else()
     # add additional flags to standard ${CMAKE_C_FLAGS}
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall")
 endif()
-
+#
+message("CMake build flags for C: ${CMAKE_C_FLAGS}.")
 #
 # give final executable name and the C source code files required to build it
 add_executable(opass ${SOURCES})
