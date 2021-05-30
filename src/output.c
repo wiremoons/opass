@@ -46,11 +46,12 @@ void show_help() {
  */
 void show_version(char *program_name, int numPassSuggestions, int wordsRequired) {
 
-#if DEBUG
-    char Build_Type[] = "Debug";
-#else
-    char Build_Type[] = "Release";
-#endif
+    // Check build flag used
+    #if DEBUG
+        char Build_Type[] = "Debug";
+    #else
+        char Build_Type[] = "Release";
+    #endif
 
     printf("\n'%s' is version: '%s'.\n", program_name, version);
     printf("Compiled on: '%s @ %s' with C source built as '%s'.\n",__DATE__,__TIME__,Build_Type);
