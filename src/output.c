@@ -46,7 +46,7 @@ void show_help() {
  */
 void show_version(char *program_name, int numPassSuggestions, int wordsRequired) {
 
-    // Check build flag used
+    /* Check build flag used */
     #if DEBUG
         char Build_Type[] = "Debug";
     #else
@@ -100,7 +100,7 @@ void dump_words() {
 }
 
 
-
+// TODO: detect compiler type for 'Show_version()' output
 //#if defined(_MSC_VER)
 //   char Compiler_Type{} = _MSC_VER;
 //#elif defined(__clang__)
