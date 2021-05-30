@@ -2,6 +2,7 @@
 #  created 01 May 2021
 #  To use run:  mkdir build && cd build && cmake .. && make
 #  On Windows with mingw : mkdir build && cd build && cmake -G "MinGW Makefiles" ..
+#  For 'Debug' on Windows: mkdir build && cd build && cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug ..
 cmake_minimum_required(VERSION 3.6)
 project(opass)
 #
@@ -10,6 +11,7 @@ project(opass)
 #
 # -DVERSION=`date "+%Y-%m-%d @ %H:%M"`
 #
+# cmake -DCMAKE_BUILD_TYPE=Debug
 # check if CMake 'debug' build is being used?
 if (CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DDEBUG=1)
