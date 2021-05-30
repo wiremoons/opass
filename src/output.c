@@ -46,7 +46,7 @@ void show_help() {
  */
 void show_version(char *program_name, int numPassSuggestions, int wordsRequired) {
 
-    /* Check build flag used */
+    /* Check build flag used when program was compiled */
     #if DEBUG
         char Build_Type[] = "Debug";
     #else
