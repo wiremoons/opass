@@ -34,7 +34,7 @@ else()
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wall")
 endif()
 #
-message("CMake build flags for C: ${CMAKE_C_FLAGS}.")
+message("CMake build flags for C: ${CMAKE_C_FLAGS}")
 #
 # give final executable name and the C source code files required to build it
 add_executable(opass ${SOURCES})
