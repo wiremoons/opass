@@ -11,7 +11,48 @@
 #include "output.h"
 
 #include <stdio.h> /* printf */
+#include <ctype.h>
+#include <string.h>
 
+/*
+ * show_password outputs the generated password using colours
+ * unless disabled via the environment variable:
+ */
+void show_password(char *out_password) {
+    if ((strlen(out_password) <= 0) || (NULL == out_password)) {
+        printf("\nERROR\n");
+        return;
+    }
+    #if DEBUG
+    printf("processing: '%s' with length: '%d'\n",out_password,(int) strlen(out_password));
+    #endif
+
+    int test_len = 0;
+
+    while (*out_password != '\0') {
+        if (isdigit(*out_password)){
+            #if DEBUG
+            printf("DIGIT: [%c] ",*out_password);
+            #endif
+            printf("%c",*out_password);
+        } else if (ispunct(*out_password)){
+            #if DEBUG
+            printf("MARK: [%c] ",*out_password);
+            #endif
+            printf("%c",*out_password);
+        } else {
+            #if DEBUG
+            printf("default: [%c] ",*out_password);
+            #endif
+            printf("%c",*out_password);
+        }
+        test_len++;
+        out_password++;
+    }
+    #if DEBUG
+    printf("DONE PROCESSING  ['%d' chars]\n",test_len);
+    #endif
+}
 
 /*
  * show_help displays a summary of the command line switches
@@ -93,7 +134,7 @@ void dump_words() {
 
     printf("Marks used:\n");
     while (m < marksArraySize) {
-        printf("%s ", *(marks + m));
+        printf("%d ", *(marks + m));
         m++;
     }
     printf("\n");

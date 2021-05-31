@@ -1,50 +1,49 @@
-/*
- * Offer Password (opass): opass.h
- *
- * opass is a password generation program that uses a pool of three
+/**
+ * @file opass.h
+ * @brief Offer Password (opass): opass is a password generation program that uses a pool of three
  * letter English words
  *
- * author:     simon rowe <simon@wiremoons.com>
- * license:    open-source released under "MIT License"
- * source:     https://github.com/wiremoons/opass
+ * @author     simon rowe <simon@wiremoons.com>
+ * @license    open-source released under "MIT License"
+ * @source     https://github.com/wiremoons/opass
  *
- * originally created: 05 Jan 2016
- * updated significantly: 01 May 2021
+ * @date originally created: 05 Jan 2016
+ * @date updated significantly: 01 May 2021
  *
- * The program is licensed under the "MIT License" see
+ * The program is licensed under the "*MIT License*" see
  * http://opensource.org/licenses/MIT for more details.
  *
  */
 
-#ifndef OPASS_H_ /* Include guard */
+#ifndef OPASS_H_
 #define OPASS_H_
 
-#include "output.h" /* functions to display password program output */
+// display password program output
+#include "output.h"
 
 #define MAX_PASSWORDS 5
 #define MAX_WORDS 3
 
-char version[] = "0.7.7"; /* define the version of the program */
-int wordArraySize = 0; /* number of words in the word array */
-int marksArraySize = 0; /* number of characters in the marks array */
+char version[] = "0.7.8";
+int wordArraySize = 0;
+int marksArraySize = 0;
 
-/* FUNCTION DECLARATIONS FOR opass.c */
-
-int set_number_passwords(void);
-int set_number_words(void);
-char *with_spaces(char *str_password);
 char *get_random_password_str(int wordsRequired);
 void get_quick(int wordsRequired);
+int set_number_passwords(void);
+int set_number_words(void);
+void with_spaces(char *str_password);
 
-/*
- *  char *Mar is a pointer to array of strings. Each string in the
- *  array contains a single character.
+
+/**
+ *  `const int marks[]` : an array of characters of type int.
+ *   Each character (mark) is used as an additional random
  */
-const char *marks[] = {"#", ".", ";", "@", "%", ":", "!", ">", "-", "<"};
+const int marks[] = {'#', '.', ';', '@', '%', ':', '!', '>', '-', '<'};
 
-/*
- *  char *words is a pointer to array of strings. Each string in the
- *  array contains a three letter english word
+/**
+ *  `const char *words[]` : a pointer to array of strings. Each string in the
+ *  array contains a three letter english word use to generate a password string
  */
 const char *words[] = {
     "aah", "aal", "aas", "aba", "abb", "abo", "abs", "aby", "ace", "ach", "act",
