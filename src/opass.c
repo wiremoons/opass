@@ -184,9 +184,11 @@ int main(int argc, char **argv)
 
     /** @var : get total number of three letter words in our array contain all the three letter words */
     wordArraySize = sizeof(words) / sizeof(words[0]);
+    assert(wordArraySize == 1312);
 
     /** @var : get the total number of mark characters in our array */
     marksArraySize = sizeof(marks) / sizeof(int);
+    assert(marksArraySize == 10);
 
     /* seed random with the current time in seconds since the
      * Epoch done once - used as is global value for programs life */
@@ -237,8 +239,12 @@ int main(int argc, char **argv)
 
         char *fullpass=malloc(fullpass_sz);
 
-        /* create 'fullpass' with component parts */
-        snprintf(fullpass,fullpass_sz,"%s%c%02d",newpass,(marks[(random() % marksArraySize)]),(random() % 99));
+        /** @note Create a `*fullpass` with component parts.
+         * The call to random is cast as `int` as Windows uses *rand/srand* alternative
+         * that return `int` whereas other systems all use *srandom/random* from 'stdlib.h' library
+         * that returns a `long`. As only random numbers between 0 and 99 are being used, limiting
+         * the returned value to `int` from default `long` is safe. */
+        snprintf(fullpass,fullpass_sz,"%s%c%02d",newpass,(marks[(random() % marksArraySize)]),(int)(random() % 99));
 
         /* output a word only version of the password with spaces between the word */
         if ((strlen(newpass) > 0) || (NULL != newpass)) {
