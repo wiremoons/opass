@@ -24,7 +24,7 @@ void show_password(char *out_password) {
         return;
     }
     #if DEBUG
-    printf("processing: '%s' with length: '%d'\n",out_password,(int) strlen(out_password));
+    printf("\nProcessing: '%s' which has length: '%d'\n",out_password,(int) strlen(out_password));
     #endif
 
     int test_len = 0;
@@ -32,17 +32,17 @@ void show_password(char *out_password) {
     while (*out_password != '\0') {
         if (isdigit(*out_password)){
             #if DEBUG
-            printf("DIGIT: [%c] ",*out_password);
+            printf(" DIGIT: [%c] ",*out_password);
             #endif
             printf("%c",*out_password);
         } else if (ispunct(*out_password)){
             #if DEBUG
-            printf("MARK: [%c] ",*out_password);
+            printf(" MARK: [%c] ",*out_password);
             #endif
             printf("%c",*out_password);
         } else {
             #if DEBUG
-            printf("default: [%c] ",*out_password);
+            printf(" default: [%c] ",*out_password);
             #endif
             printf("%c",*out_password);
         }
@@ -50,7 +50,7 @@ void show_password(char *out_password) {
         out_password++;
     }
     #if DEBUG
-    printf("DONE PROCESSING  ['%d' chars]\n",test_len);
+    printf("\nDONE PROCESSING  ['%d' chars]\n",test_len);
     #endif
 }
 
