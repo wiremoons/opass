@@ -127,12 +127,12 @@ git clone https://github.com/wiremoons/opass.git
 ### Compiling (no CMake required)
 On Windows using MingGW, compile the program as `opass.exe` with: 
 ```console
-gcc -Wall --std=gnu11 -Dsrandom=srand -Drandom=rand -static -DDEBUG=0 -o opass ./src/opass.c ./src/output.c
+gcc -Wall --std=gnu11 -Dsrandom=srand -Drandom=rand -static -DDEBUG=0 -DNDEBUG -o opass ./src/opass.c ./src/output.c
 ```
 
 On Unix (Linux/macOS/etc), compile the program as `opass` using with:
 ```console
-gcc -Wall --std=gnu11 -static -DDEBUG=0 -o opass ./src/opass.c ./src/output.c
+gcc -Wall --std=gnu11 -static -DDEBUG=0 -DNDEBUG -o opass ./src/opass.c ./src/output.c
 ```
 
 ### Compile with CMake
