@@ -15,6 +15,7 @@ project(opass)
 # check if CMake 'debug' build is being used?
 if (CMAKE_BUILD_TYPE MATCHES Debug)
     add_definitions(-DDEBUG=1)
+    add_definitions(-DNDEBUG)
 endif()
 #
 # add list of C source code files to var ${SOURCES}
