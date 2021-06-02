@@ -28,7 +28,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 # set different compiler flags for Windows vs other OS
 if(MSVC OR MSYS OR MINGW)
     # for detecting Windows compilers
-    # add additional flags to standard ${CMAKE_C_FLAGS} - fix missing srandom/random libs
+    # add additional flags to standard ${CMAKE_C_FLAGS}
+    # -Dsrandom=srand -Drandom=rand - fix missing srandom/random libs
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -Wall -pedantic -Dsrandom=srand -Drandom=rand -static")
 else()
     # add additional flags to standard ${CMAKE_C_FLAGS}
