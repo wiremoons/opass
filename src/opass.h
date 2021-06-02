@@ -18,6 +18,10 @@
 #ifndef OPASS_H_
 #define OPASS_H_
 
+// fix missing 'random' and 'srandom' in some 'stdlib.h' libraries
+//#define random rand
+//#define srandom srand
+
 // display password program output
 #include "output.h"
 
