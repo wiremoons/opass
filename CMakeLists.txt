@@ -40,6 +40,4 @@ message("CMake build flags for C: ${CMAKE_C_FLAGS} ${SOURCES} ${CMAKE_DL_LIBS}")
 #
 # give final executable name and the C source code files required to build it
 add_executable(opass ${SOURCES})
-#
-# list the names of the C libraries to link against: pthreads readline dl
-target_link_libraries(opass ${CMAKE_DL_LIBS})
+
