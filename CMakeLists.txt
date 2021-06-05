@@ -33,10 +33,10 @@ if(MSVC OR MSYS OR MINGW)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -Wall -pedantic -Dsrandom=srand -Drandom=rand -static")
 else()
     # add additional flags to standard ${CMAKE_C_FLAGS}
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --std=c11 -Wall -pedantic")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -Wall -pedantic")
 endif()
 #
-message("CMake build flags for C: ${CMAKE_C_FLAGS}")
+message("CMake build flags for C: ${CMAKE_C_FLAGS} ${SOURCES} ${CMAKE_DL_LIBS}")
 #
 # give final executable name and the C source code files required to build it
 add_executable(opass ${SOURCES})
