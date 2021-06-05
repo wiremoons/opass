@@ -11,10 +11,10 @@
 
 #include "opass.h"
 
+#include <stdlib.h> /* malloc, srandom, random, env */
 #include <ctype.h>  /* isdigit */
 #include <errno.h>  /* strerror */
 #include <stdio.h>  /* printf, fprintf */
-#include <stdlib.h> /* malloc, srandom, random, env */
 #include <string.h> /* strncat */
 #include <time.h>   /* time */
 #include <assert.h> /* assert macro */
