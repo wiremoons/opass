@@ -17,6 +17,7 @@
 #include <string.h> /* strncat */
 #include <time.h>   /* time */
 #include <assert.h> /* assert macro */
+#include <errno.h>  /* strerror - see function ‘with_spaces’ */
 
 /**
  * @brief Set the total number of passwords to display as output for the user to select from.
