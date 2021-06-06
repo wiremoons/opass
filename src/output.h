@@ -18,15 +18,15 @@
 #ifndef OPASS_OUTPUT_H
 #define OPASS_OUTPUT_H
 
-extern char version[];
-extern int wordArraySize;
-extern int marksArraySize;
-extern const char *words[];
-extern const int marks[];
+//extern char version[];
+//extern int wordArraySize;
+//extern int marksArraySize;
+//extern const char *words[];
+//extern const int marks[];
 
-void dump_words();
+void dump_words(int wordArraySize, int marksArraySize, char const *words[], int const marks[]);
 void show_help(void);
-void show_version(char *program_name, int numPassSuggestions, int wordsRequired);
+void show_version(char *program_name, int numPassSuggestions, int wordsRequired, char *version, int wordArraySize, int  marksArraySize);
 void show_password(char *out_password);
 
 

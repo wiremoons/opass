@@ -27,29 +27,28 @@
 
 #define MAX_PASSWORDS 5
 #define MAX_WORDS 3
+#define VERSION "0.8.0";
+//int wordArraySize = 0;
+//int marksArraySize = 0;
 
-char version[] = "0.7.8";
-int wordArraySize = 0;
-int marksArraySize = 0;
-
-char *get_random_password_str(int wordsRequired);
-void get_quick(int wordsRequired);
+char *get_random_password_str(int wordsRequired, int wordArraySize);
+void get_quick(int wordsRequired, int wordArraySize);
 int set_number_passwords(void);
 int set_number_words(void);
 void with_spaces(char *str_password);
 
 
 /**
- *  `const int marks[]` : an array of characters of type int.
+ *  `int const marks[]` : an array of characters of type int.
  *   Each character (mark) is used as an additional random
  */
-const int marks[] = {'#', '.', ';', '@', '%', ':', '!', '>', '-', '<'};
+int const marks[] = {'#', '.', ';', '@', '%', ':', '!', '>', '-', '<'};
 
 /**
- *  `const char *words[]` : a pointer to array of strings. Each string in the
+ *  `char const *words[]` : a pointer to array of strings. Each string in the
  *  array contains a three letter english word use to generate a password string
  */
-const char *words[] = {
+char const *words[] = {
     "aah", "aal", "aas", "aba", "abb", "abo", "abs", "aby", "ace", "ach", "act",
     "add", "ado", "ads", "adz", "aff", "aft", "aga", "age", "ago", "ags", "aha",
     "ahi", "ahs", "aia", "aid", "ail", "aim", "ain", "air", "ais", "ait", "aka",

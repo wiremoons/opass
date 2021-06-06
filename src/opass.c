@@ -13,7 +13,6 @@
 
 #include <stdlib.h> /* malloc, srandom, random, env */
 #include <ctype.h>  /* isdigit */
-#include <errno.h>  /* strerror */
 #include <stdio.h>  /* printf, fprintf */
 #include <string.h> /* strncat */
 #include <time.h>   /* time */
@@ -53,10 +52,10 @@ int set_number_words(void)
 
 /**
  * @brief Gets a string created from randomly selected three (3) letter words from the `const char *words[]` array.
- * @param wordsRequired : the number of random words to obtain from the `const char *words[]` array.
+ * @param wordsRequired : the number of random words to obtain from the `char const *words[]` array.
  * @return a pointer to the heap allocated string of three (3) letter words randomly generated.
  */
-char *get_random_password_str(int wordsRequired)
+char *get_random_password_str(int wordsRequired, int wordArraySize)
 {
     /** @note Allocate on the heap a new string sized hold the generated password.
      * Memory sized based on the words being three chars in length times number words required.
@@ -154,11 +153,12 @@ void with_spaces(char *str_password)
 /**
  * @brief Quick output was requested via command line option '-q' or '--quick'
  * @param wordsRequired : the number of three letter words to include in output
+ * @param wordArraySize : the size of the `char const *words[]` array.
  * @return no return
  */
-void get_quick(int wordsRequired)
+void get_quick(int wordsRequired, int wordArraySize)
 {
-    char *newpass = get_random_password_str(wordsRequired);
+    char *newpass = get_random_password_str(wordsRequired, wordArraySize);
     printf("%s\n", newpass);
     free(newpass);
     newpass = NULL;
@@ -176,18 +176,21 @@ void get_quick(int wordsRequired)
 int main(int argc, char **argv)
 {
 
+    /** @var : set the version using the define from the header */
+    char version[] = VERSION;
+
     /** @var : set the number of passwords to provide as output */
-    int numPassSuggestions = set_number_passwords();
+    int const numPassSuggestions = set_number_passwords();
 
     /** @var : set the number of random three letter words per password */
-    int wordsRequired = set_number_words();
+    int const wordsRequired = set_number_words();
 
     /** @var : get total number of three letter words in our array contain all the three letter words */
-    wordArraySize = sizeof(words) / sizeof(words[0]);
+    int const wordArraySize = sizeof(words) / sizeof(words[0]);
     assert(wordArraySize == 1312);
 
     /** @var : get the total number of mark characters in our array */
-    marksArraySize = sizeof(marks) / sizeof(int);
+    int const marksArraySize = sizeof(marks) / sizeof(int);
     assert(marksArraySize == 10);
 
     /* seed random with the current time in seconds since the
@@ -203,17 +206,17 @@ int main(int argc, char **argv)
         }
 
         if (strcmp(argv[1], "-q") == 0 || strcmp(argv[1], "--quick") == 0) {
-            get_quick(wordsRequired);
+            get_quick(wordsRequired,wordArraySize);
             return (EXIT_SUCCESS);
         }
 
         if (strcmp(argv[1], "-e") == 0 || strcmp(argv[1], "--export") == 0) {
-            dump_words();
+            dump_words(wordArraySize, marksArraySize, words, marks);
             return (EXIT_SUCCESS);
         }
 
         if (strcmp(argv[1], "-v") == 0 || strcmp(argv[1], "--version") == 0) {
-            show_version(argv[0], numPassSuggestions, wordsRequired);
+            show_version(argv[0], numPassSuggestions, wordsRequired, version, wordArraySize, marksArraySize);
             return (EXIT_SUCCESS);
         }
     }
@@ -224,7 +227,7 @@ int main(int argc, char **argv)
     printf("Suggested passwords are:\n\n");
     for (int x = 1; x <= numPassSuggestions; x++) {
         /* get a base set of words to use as a password string: `*newpass` */
-        char *newpass = get_random_password_str(wordsRequired);
+        char *newpass = get_random_password_str(wordsRequired,wordArraySize);
 
         #if DEBUG
         printf("DEBUG: '*newpass' length: %d\n",(int)strlen(newpass));

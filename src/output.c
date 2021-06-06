@@ -85,7 +85,8 @@ void show_help() {
  * show_version displays a summary of the version information
  * available in the program.
  */
-void show_version(char *program_name, int numPassSuggestions, int wordsRequired) {
+// TODO : use a struct to pass all the variable below!
+void show_version(char *program_name, int numPassSuggestions, int wordsRequired, char *version, int wordArraySize, int  marksArraySize ) {
 
     /* Check build flag used when program was compiled */
     #if DEBUG
@@ -121,7 +122,7 @@ void show_version(char *program_name, int numPassSuggestions, int wordsRequired)
 /*
  * dump out the complete list of words and marks held in our arrays
  */
-void dump_words() {
+void dump_words(int wordArraySize, int marksArraySize, char const *words[], int const marks[]) {
     int i = 0;
     int m = 0;
 
