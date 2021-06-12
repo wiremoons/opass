@@ -29,17 +29,23 @@ void show_password(char *out_password) {
 
     int test_len = 0;
 
+    //char RED[]="\033[1;31m";
+    //char BLUE[]="\033[1;34m";
+    char CYAN[]="\033[1;36m";
+    char GREEN[]="\033[1;32m";
+    char RESET[] = "\033[0m";
+
     while (*out_password != '\0') {
         if (isdigit(*out_password)){
             #if DEBUG
             printf(" DIGIT: [%c] ",*out_password);
             #endif
-            printf("%c",*out_password);
+            printf("%s%c%s",CYAN,*out_password,RESET);
         } else if (ispunct(*out_password)){
             #if DEBUG
             printf(" MARK: [%c] ",*out_password);
             #endif
-            printf("%c",*out_password);
+            printf("%s%c%s",GREEN,*out_password,RESET);
         } else {
             #if DEBUG
             printf(" default: [%c] ",*out_password);
