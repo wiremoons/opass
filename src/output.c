@@ -124,8 +124,11 @@ void show_version(char *program_name, int numPassSuggestions, int wordsRequired,
     printf("Compiled on: '%s @ %s' with C source built as '%s'.\n",__DATE__,__TIME__,Build_Type);
     puts("Copyright (c) 2021 Simon Rowe.\n");
     puts("For licenses and further information visit:");
-
     puts("- https://github.com/wiremoons/opass/");
+
+    if ( getenv("NO_COLOR") ) {
+        puts("\n'NO_COLOR' environment exist as: https://no-color.org/");
+    }
 
     /* display some stats about passwords being generated */
     printf("\nApplication Password Stats:\n");
