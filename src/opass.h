@@ -27,7 +27,7 @@
 
 #define MAX_PASSWORDS 5
 #define MAX_WORDS 3
-#define VERSION "0.8.1";
+#define VERSION "0.8.2";
 
 
 char *get_random_password_str(int wordsRequired, int wordArraySize);
@@ -35,6 +35,7 @@ void get_quick(int wordsRequired, int wordArraySize);
 int set_number_passwords(void);
 int set_number_words(void);
 void with_spaces(char *str_password);
+void with_capitilised_words(char *str_password);
 
 
 /**

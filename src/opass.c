@@ -80,7 +80,8 @@ char *get_random_password_str(int wordsRequired, int wordArraySize)
         printf("DEBUG: word array random number: %ld\n",r);
         #endif
         /* add the new word to the 'generated_password' variable we allocated on
-         * heap earlier */
+         * heap earlier
+         */
         strncat(generated_password, *(words + r), strlen(*(words + r)));
     }
     /* return the heap memory address of variable: char *generated_password */
@@ -150,6 +151,51 @@ void with_spaces(char *str_password)
     free(str_newpass);
     str_newpass = NULL;
 }
+
+/**
+ * @brief Manipulate the existing heap allocated string to capitalises each three letter words.
+ * @param str_password : the baseline string to be used - existing in memory string is altered.
+ * @return no return.
+ */
+void with_capitilised_words(char *str_password)
+{
+    size_t length = strlen(str_password);
+
+    if (NULL == str_password) {
+        fprintf(stderr,
+                "Error NULL pointer in function 'with_capitilised_words()' in file '%s' at line '%d'.\nERROR : %s\n",
+                __FILE__, __LINE__, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    /** @var count for 'str_password' to manage pointer location */
+    int sp = 0;
+    /** @var count to track position for capitalising a character every three characters */
+    int add_space = 0;
+
+    while (*(str_password + sp) != '\0') {
+
+        /* ensure the first letter of the first word is capitalised */
+        if (sp == 0) {
+            *(str_password + sp) = toupper(*(str_password + sp));
+        }
+
+        /* check if at the third character position but not in the last 3 positions in the whole string */
+        if ((add_space == 3) & (sp != length - 3)) {
+            /* convert to uppercase at the current pointer location */
+            *(str_password + sp) = (char)toupper(*(str_password + sp));
+               /* now reset count */
+            add_space = 0;
+        }
+
+        /* increment the pointer to next char position on each of the password strings */
+        sp++;
+        /* also increment char space count by 1 to track when three (3) is reached */
+        add_space++;
+    }
+
+}
+
 
 /**
  * @brief Quick output was requested via command line option '-q' or '--quick'
@@ -245,7 +291,7 @@ int main(int argc, char **argv)
 
         /** @note Create a `*fullpass` with component parts.
          * The call to random is cast as `int` as Windows uses *rand/srand* alternative
-         * that return `int` whereas other systems all use *srandom/random* from 'stdlib.h' library
+         * that returns `int` whereas other systems all use *srandom/random* from 'stdlib.h' library
          * that returns a `long`. As only random numbers between 0 and 99 are being used, limiting
          * the returned value to `int` from default `long` is safe. */
         snprintf(fullpass,fullpass_sz,"%s%c%02d",newpass,(marks[(random() % marksArraySize)]),(int)(random() % 99));
@@ -255,6 +301,11 @@ int main(int argc, char **argv)
             with_spaces(newpass);
         }
         printf("    ");
+        /* output a word, mark and random number version of the password */
+        show_password(fullpass);
+        printf("    ");
+        /* output a word, mark and random number version of the password with each word capitalised */
+        with_capitilised_words(fullpass);
         show_password(fullpass);
         printf("\n");
         free(newpass);
