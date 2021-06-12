@@ -91,9 +91,17 @@ For Windows '`Powershell`' use: `$env:OPASS_WORDS=7 ; $env:OPASS_NUM=8 ; ./opass
 
 ## Application Screen Outputs
 
-Below are examples of the outputs display when the program is run:
+Below are examples of the outputs display when the program is run.
 
-***COMING SOON***
+Below is the default output when the program is just run as `opass` or `opass.exe`:
+
+![apass screenshot](imgs/screenshot_default.png)
+
+Below is the output when the program is run as `opass` or `opass.exe` but the output is 
+set to display password strings made up from seven (7) different three letter words, and 
+to show eight (8) different random passwords for the user to select from:
+
+![apass screenshot](imgs/screenshot_7w8p.png)
 
 
 ## Downloading the Application
