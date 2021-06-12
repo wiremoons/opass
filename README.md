@@ -89,6 +89,17 @@ For Windows '`cmd.exe`' use: `set "OPASS_WORDS=7" & set "OPASS_NUM=8" & opass`
 
 For Windows '`Powershell`' use: `$env:OPASS_WORDS=7 ; $env:OPASS_NUM=8 ; ./opass`
 
+Output will use ANSI colour by default. The '**NO_COLOR**' environment is respected and colour
+output is disabled if it is set. 
+This can also be specified on the command line by running commands as shown below:
+
+For Windows '`cmd.exe`' use:            `set "NO_COLOR=1" & opass`
+For Windows '`Powershell`' use:         `$env:NO_COLOR=1 ; ./opass`
+For macOS, Linux, '`Unix shells`' use:  `NO_COLOR=1 opass`
+
+See: https://no-color.org/ web site for more information about `NO_COLOR` support in 
+applications.
+
 ## Application Screen Outputs
 
 Below are examples of the outputs display when the program is run.

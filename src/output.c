@@ -10,8 +10,9 @@
 
 #include "output.h"
 
-#include <stdio.h> /* printf */
-#include <ctype.h>
+#include <stdio.h>   /* printf */
+#include <stdlib.h>  /* getenv */
+#include <ctype.h>   /* toupper */
 #include <string.h>
 
 /*
@@ -20,12 +21,24 @@
  */
 void show_password(char *out_password) {
     if ((strlen(out_password) <= 0) || (NULL == out_password)) {
-        printf("\nERROR\n");
+        fprintf(stderr,"\nERROR: password to be displayed is zero length or NULL\n");
         return;
     }
     #if DEBUG
     printf("\nProcessing: '%s' which has length: '%d'\n",out_password,(int) strlen(out_password));
     #endif
+
+    /* respect the NO_COLOR setting as: https://no-color.org/ */
+    if ( getenv("NO_COLOR") ) {
+        #if DEBUG
+        printf("\n'NO_COLOR' environment setting found.\n");
+        #endif
+        printf("%s",out_password);
+        #if DEBUG
+        printf("\nDONE PROCESSING as NO_COLOR ['%d' chars]\n",(int)strlen(out_password));
+        #endif
+        return;
+    }
 
     int test_len = 0;
 
@@ -78,7 +91,13 @@ void show_help() {
            "Usage ensures a minimum of seven random three letter words are included and eight different\n"
            "password choices will be offered to the user to select from.\n\n"
            "For Windows 'cmd.exe' use:     set \"OPASS_WORDS=7\" & set \"OPASS_NUM=8\" & opass\n"
-           "For Windows 'Powershell' use:  $env:OPASS_WORDS=7 ; $env:OPASS_NUM=8 ; ./opass\n\n\n"
+           "For Windows 'Powershell' use:  $env:OPASS_WORDS=7 ; $env:OPASS_NUM=8 ; ./opass\n\n"
+           "Output will use ANSI colour by default. The 'NO_COLOR' environment is respected and colour\n"
+           "output is disabled if it is set. See: https://no-color.org/\n"
+           "This can also be specified on the command line by running commands as shown below:\n\n"
+           "For Windows 'cmd.exe' use:            set \"NO_COLOR=1\" & opass\n"
+           "For Windows 'Powershell' use:         $env:NO_COLOR=1 ; ./opass\n"
+           "For macOS, Linux, 'Unix shells' use:  NO_COLOR=1 opass\n\n\n"
            "Help Summary: the following command line switches can be used:\n\n"
            "  -e, --export     Dump the full list of three letter words and marks.\n"
            "  -h, --help       Show this help information.\n"
