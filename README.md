@@ -7,7 +7,24 @@ strong and safe passwords using a large pool of English language
 three letter words. Each offered randomly generated password includes 
 an additional random character, and a two digit random number.  
 
-## Move details about opass
+## Downloading the Application
+
+The program is available for most computer operating systems as a single
+binary that has no additional installation requirements. Just download a binary and add  
+the program to your computer operating systems PATH, or copy it to an existing
+directory already in you PATH.
+
+Pre-compiled binaries are provided for Windows (x64), Linux (x64 and aarch64), and
+macOS (x64 and arm64) - all available for download from the
+[Releases](https://github.com/wiremoons/opass/releases) page.
+
+Stable releases are:
+- [opass Release 1.0.0](https://github.com/wiremoons/opass/releases/tag/v1.0.0)
+
+See the addtional informaiton below on how to customise the programs output, and 
+also the '**Support**' section below, if you have any other problems.
+
+## More details about opass
 
 `opass` (short for '*offer password*') is a password creation tool
 which uses a pool of three letter English words to generate password
@@ -97,11 +114,11 @@ These perform the following tasks to override the applications defaults - only i
 These can be set in the shell, or just given when needed on the command line. Examples of 
 running *opass* in different ways are shown below:
 
-**Example usage 1:**  `./opass`
+**Example usage 1:**  `opass`
 
-Shows default usage provides the equivalent command of: `OPASS_WORDS=3 OPASS_NUM=5 ./opass`
+Shows default usage provides the equivalent command of: `OPASS_WORDS=3 OPASS_NUM=5 opass`
 
-**Example usage 2:**  `OPASS_WORDS=7 OPASS_NUM=8 ./opass`
+**Example usage 2:**  `OPASS_WORDS=7 OPASS_NUM=8 opass`
 
 Usage ensures *seven random three letter words* are included and *eight different
 password choices* will be offered to the user to select from.
@@ -110,7 +127,7 @@ password choices* will be offered to the user to select from.
 
 For Windows '`cmd.exe`' use: `set "OPASS_WORDS=7" & set "OPASS_NUM=8" & opass`
 
-For Windows '`Powershell`' use: `$env:OPASS_WORDS=7 ; $env:OPASS_NUM=8 ; ./opass`
+For Windows '`Powershell`' use: `$env:OPASS_WORDS=7 ; $env:OPASS_NUM=8 ; opass`
 
 ### Managing NO_COLOR Output
 
@@ -121,27 +138,12 @@ This can also be specified on the command line by running commands as shown belo
 
 For Windows '`cmd.exe`' use:            `set "NO_COLOR=1" & opass`
 
-For Windows '`Powershell`' use:         `$env:NO_COLOR=1 ; ./opass`
+For Windows '`Powershell`' use:         `$env:NO_COLOR=1 ; opass`
 
 For macOS, Linux, '`Unix shells`' use:  `NO_COLOR=1 opass`
 
 See: https://no-color.org/ web site for more information about `NO_COLOR` support in 
 applications.
-
-
-## Downloading the Application
-
-The program is available for most computer operating systems as a single 
-binary that has no additional installation requirements. Just download a binary and add  
-the program to your computer operating systems PATH, or copy it to an existing 
-directory already in you PATH. 
-
-Pre-compiled binaries are provided for Windows (x64), Linux (x64 and aarch64), and 
-macOS (x64 and arm64) - all available for download from the 
-[Releases](https://github.com/wiremoons/opass/releases) page.
-
-Stable releases are:
-- [opass Release 1.0.0](https://github.com/wiremoons/opass/releases/tag/v1.0.0)
 
 ## Building the Application
 
@@ -193,6 +195,45 @@ mkdir build
 cd build
 cmake ..
 ```
+
+## Support
+
+The `opass` program is opensource and free, so you are able (if you wish) to change and 
+update the program to customise it to your own needs. However, if you find a bug or have a 
+problem, maybe a suggestion for a new feature etc, please open an issue (or add your 
+thoughts to an already existing one) using the link below.
+
+### Raising and Issue
+
+If the help and the specific support below does not fix your problem when using `opass` 
+please open an issue using the link below. Please describe the problem you are having, 
+and I will try to help you fix it if possible!
+
+- [opass Issues](https://github.com/wiremoons/opass/issues)
+
+### Colour Output on Windows is Broken?
+On Windows the program works well with both `cmd.exe` and `Powershell` - however on 
+older Windows versions the colour output may not display correctly.
+
+When running `opass.exe` on Windows, the offered passwords may include additional 
+characters. These are the ANSI escape codes used to switch on and off the colour 
+output - that older versions of Windows doesn't understand properly.
+
+This can quickly be 'fixed' as a workaround by specifying on the command line 
+the 'NO_COLOR' option as shown below:
+
+- For Windows '`cmd.exe`' use:            `set "NO_COLOR=1" & opass.exe`
+- For Windows '`Powershell`' use:         `$env:NO_COLOR=1 ; opass.exe`
+
+A better solution (that will improve other programs usage and outputs too!) is to instead use 
+Microsoft's much improved and more modern '*Terminal*' application. This is being rolled out 
+by Microsoft to become the **default** on all Windows 10 computers, but if you want to install 
+it yourself - it is also available for free from the Microsoft Windows Store:
+
+- [Microsoft Terminal](https://www.microsoft.com/en-gb/p/windows-terminal/9n0dx20hk701)
+
+Once installed and used, `opass` should display all output correctly. 
+
 
 ## License
 
