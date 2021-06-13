@@ -196,7 +196,6 @@ void with_capitilised_words(char *str_password)
 
 }
 
-
 /**
  * @brief Quick output was requested via command line option '-q' or '--quick'
  * @param wordsRequired : the number of three letter words to include in output
@@ -272,6 +271,7 @@ int main(int argc, char **argv)
      *  generating and then displaying passwords for the user to select from.
      */
     printf("Suggested passwords are:\n\n");
+
     for (int x = 1; x <= numPassSuggestions; x++) {
         /* get a base set of words to use as a password string: `*newpass` */
         char *newpass = get_random_password_str(wordsRequired,wordArraySize);
@@ -307,12 +307,14 @@ int main(int argc, char **argv)
         /* output a word, mark and random number version of the password with each word capitalised */
         with_capitilised_words(fullpass);
         show_password(fullpass);
+        /* Complete a line of offered passwords output */
         printf("\n");
+        /* free up all allocated heap memory used on each loop used to generate password outputs */
         free(newpass);
         free(fullpass);
         newpass = NULL;
         fullpass = NULL;
-    }
+    } // end password generation loop
 
     return EXIT_SUCCESS;
 }

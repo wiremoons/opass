@@ -18,7 +18,7 @@
 #ifndef OPASS_H_
 #define OPASS_H_
 
-// fix missing 'random' and 'srandom' in some 'stdlib.h' libraries
+// TODO : fix missing 'random' and 'srandom' in some 'stdlib.h' libraries
 //#define random rand
 //#define srandom srand
 
@@ -27,7 +27,7 @@
 
 #define MAX_PASSWORDS 5
 #define MAX_WORDS 3
-#define VERSION "0.9.2";
+#define VERSION "1.0.0";
 
 
 char *get_random_password_str(int wordsRequired, int wordArraySize);

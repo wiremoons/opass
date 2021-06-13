@@ -15,9 +15,11 @@
 #include <ctype.h>   /* toupper */
 #include <string.h>
 
-/*
- * show_password outputs the generated password using colours
- * unless disabled via the environment variable:
+
+/**
+ * @brief Outputs the `out_password` char string provided using ANSI colours, unless disabled via 'NO_COLOR' env variable.
+ * @param out_password : the password string to be output to screen
+ * @return no return
  */
 void show_password(char *out_password) {
     if ((strlen(out_password) <= 0) || (NULL == out_password)) {
@@ -28,7 +30,7 @@ void show_password(char *out_password) {
     printf("\nProcessing: '%s' which has length: '%d'\n",out_password,(int) strlen(out_password));
     #endif
 
-    /* respect the NO_COLOR setting as: https://no-color.org/ */
+    /* respect the NO_COLOR environment setting as: https://no-color.org/ */
     if ( getenv("NO_COLOR") ) {
         #if DEBUG
         printf("\n'NO_COLOR' environment setting found.\n");
@@ -42,6 +44,7 @@ void show_password(char *out_password) {
 
     int test_len = 0;
 
+    /* specify the different colours that can be used with the output of marks and numbers */
     //char RED[]="\033[1;31m";
     //char BLUE[]="\033[1;34m";
     char CYAN[]="\033[1;36m";
@@ -73,9 +76,10 @@ void show_password(char *out_password) {
     #endif
 }
 
-/*
- * show_help displays a summary of the command line switches
- * available in the program.
+/**
+ * @brief Displays a summary of the command line switches available and help for controlling outputs for passwords.
+ * @param none
+ * @return no return
  */
 void show_help() {
     printf(""
@@ -110,7 +114,17 @@ void show_help() {
  * show_version displays a summary of the version information
  * available in the program.
  */
-// TODO : use a struct to pass all the variable below!
+/**
+ * @brief Displays a summary of the version information and stats for passwords based on current settings.
+ * @param program_name : the name of the application
+ * @param numPassSuggestions : current setting for the number of passwords to be shown to the user to select from
+ * @param wordsRequired : current settings for the number of three letter words to be used to construct the password
+ * @param version : the current opass version (see `opass.h` defined VERSION)
+ * @param wordArraySize : the number of three letter words held in the programs `words[]` array
+ * @param marksArraySize : the number of marks held in the programs `marks[]` array
+ * @return no return
+ */
+// TODO : use a struct to pass all the variable below?
 void show_version(char *program_name, int numPassSuggestions, int wordsRequired, char *version, int wordArraySize, int  marksArraySize ) {
 
     /* Check build flag used when program was compiled */
@@ -150,6 +164,11 @@ void show_version(char *program_name, int numPassSuggestions, int wordsRequired,
 /*
  * dump out the complete list of words and marks held in our arrays
  */
+/**
+ * @brief Dump out to the screen the complete list of words and marks held in our programs arrays.
+ * @param none
+ * @return no return
+ */
 void dump_words(int wordArraySize, int marksArraySize, char const *words[], int const marks[]) {
     int i = 0;
     int m = 0;
@@ -170,7 +189,7 @@ void dump_words(int wordArraySize, int marksArraySize, char const *words[], int 
 }
 
 
-// TODO: detect compiler type for 'Show_version()' output
+// TODO: detect compiler type for additional 'Show_version()' output
 //#if defined(_MSC_VER)
 //   char Compiler_Type{} = _MSC_VER;
 //#elif defined(__clang__)
