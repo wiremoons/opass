@@ -125,7 +125,7 @@ void show_help() {
  * @return no return
  */
 // TODO : use a struct to pass all the variable below?
-void show_version(char *program_name, int numPassSuggestions, int wordsRequired, char *version, int wordArraySize, int  marksArraySize ) {
+void show_version(const char *program_name, const int numPassSuggestions, const int wordsRequired, const char *version, const int wordArraySize, const int marksArraySize ) {
 
     /* Check build flag used when program was compiled */
     #if DEBUG
@@ -182,7 +182,7 @@ void dump_words(int wordArraySize, int marksArraySize, char const *words[], int 
 
     printf("Marks used:\n");
     while (m < marksArraySize) {
-        printf("%d ", *(marks + m));
+        printf("%c ", *(marks + m));
         m++;
     }
     printf("\n");

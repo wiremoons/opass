@@ -58,7 +58,7 @@ int set_number_words(void)
  */
 char *get_random_password_str(int wordsRequired, int wordArraySize)
 {
-    /** @note Allocate on the heap a new string sized hold the generated password.
+    /** @note Allocate on the heap a new string sized to hold the generated password.
      * Memory sized based on the words being three chars in length times number words required.
      * Then plus one (1) for the C string termination character `\0`.
      */
@@ -223,7 +223,7 @@ int main(int argc, char **argv)
 {
 
     /** @var : set the version using the define from the header */
-    char version[] = VERSION;
+    const char version[] = VERSION;
 
     /** @var : set the number of passwords to provide as output */
     int const numPassSuggestions = set_number_passwords();

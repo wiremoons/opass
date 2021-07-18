@@ -20,7 +20,7 @@
 
 void dump_words(int wordArraySize, int marksArraySize, char const *words[], int const marks[]);
 void show_help(void);
-void show_version(char *program_name, int numPassSuggestions, int wordsRequired, char *version, int wordArraySize, int  marksArraySize);
+void show_version(const char *program_name, int numPassSuggestions, int wordsRequired, const char *version, int wordArraySize, int  marksArraySize);
 void show_password(char *out_password);
 
 
