@@ -27,7 +27,7 @@
 
 #define MAX_PASSWORDS 5
 #define MAX_WORDS 3
-#define VERSION "1.0.1";
+#define VERSION "1.0.2";
 
 
 char *get_random_password_str(int wordsRequired, int wordArraySize);
