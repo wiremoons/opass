@@ -210,6 +210,21 @@ void get_quick(int wordsRequired, int wordArraySize)
     newpass = NULL;
 }
 
+/**
+ * @brief Request for no colour output requested via command line option '-n' or '--nocolor'
+ * @return no return
+ */
+void set_nocolor_env()
+{
+    if ( setenv("NO_COLOR", "1", 1) == -1 ) {
+        fprintf(stderr,
+                "Error setting 'NO_COLOR' env in function 'set_nocolor_env()' in file '%s' at line '%d'.\nERROR : %s\n",
+                __FILE__, __LINE__, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+}
+
+
 /*-------------------------------*/
 /* MAIN - Program starts here    */
 /*-------------------------------*/
@@ -251,11 +266,6 @@ int main(int argc, char **argv)
             return (EXIT_SUCCESS);
         }
 
-        if (strcmp(argv[1], "-q") == 0 || strcmp(argv[1], "--quick") == 0) {
-            get_quick(wordsRequired,wordArraySize);
-            return (EXIT_SUCCESS);
-        }
-
         if (strcmp(argv[1], "-e") == 0 || strcmp(argv[1], "--export") == 0) {
             dump_words(wordArraySize, marksArraySize, words, marks);
             return (EXIT_SUCCESS);
@@ -265,6 +275,16 @@ int main(int argc, char **argv)
             show_version(argv[0], numPassSuggestions, wordsRequired, version, wordArraySize, marksArraySize);
             return (EXIT_SUCCESS);
         }
+
+        if (strcmp(argv[1], "-n") == 0 || strcmp(argv[1], "--nocolor") == 0) {
+            set_nocolor_env();
+        }
+
+        if (strcmp(argv[1], "-q") == 0 || strcmp(argv[1], "--quick") == 0) {
+            get_quick(wordsRequired,wordArraySize);
+            return (EXIT_SUCCESS);
+        }
+
     }
 
     /** @section No command line options were provided by the user - so run the default action of

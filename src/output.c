@@ -84,29 +84,32 @@ void show_password(char *out_password) {
 void show_help() {
     printf(""
            "\nOffer Password (opass) Help.\n\n"
-           "A number of command line flags can be specified which are listed below.\n"
-           "Additionally environment variables can be used to control offered password configuration:\n\n"
-           " - OPASS_WORDS=<number of three letter words to include>\n"
-           " - OPASS_NUM=<number of passwords to offer>\n\n"
-           "These can be set in the shell, or just given when needed on the command line.\n\n\n"
-           "Example usage 1:  opass\n\n"
+            "Help Summary: the following command line switches can be used:\n\n"
+           "  -e, --export     Dump the full list of three letter words and marks.\n"
+           "  -h, --help       Show this help information.\n"
+           "  -n, --nocolor    No colour output with the passwords displayed.\n"
+           "  -q, --quick      Just offer a password and no other output.\n"
+           "  -v, --version    Display the version of the program and password stats.\n\n"
+           "Other options are configured via environment variables:\n\n"
+           "OPASS_WORDS        Set the number of three letter words to include in a password.\n"
+           "OPASS_NUM          Set the number of passwords to generate.\n"
+           "NO_COLOR           set if colour output is to be excluded. Also set via '-n' flag.\n\n"
+           "These can be set in the shell, or just given when needed on the command line.\n\n"
+           "Example usage 1:  opass\n"
            "Shows default usage provides the equivalent command of:  OPASS_WORDS=3 OPASS_NUM=5 opass\n\n"
-           "Example usage 2:  OPASS_WORDS=7 OPASS_NUM=8 opass\n\n"
+           "Example usage 2:  OPASS_WORDS=7 OPASS_NUM=8 opass\n"
            "Usage ensures a minimum of seven random three letter words are included and eight different\n"
            "password choices will be offered to the user to select from.\n\n"
            "For Windows 'cmd.exe' use:     set \"OPASS_WORDS=7\" & set \"OPASS_NUM=8\" & opass\n"
            "For Windows 'Powershell' use:  $env:OPASS_WORDS=7 ; $env:OPASS_NUM=8 ; opass\n\n"
-           "Output will use ANSI colour by default. The 'NO_COLOR' environment is respected and colour\n"
-           "output is disabled if it is set. See: https://no-color.org/\n"
-           "This can also be specified on the command line by running commands as shown below:\n\n"
+           "Output will use ANSI colour by default. The 'NO_COLOR' environment is respected.\n"
+           "Colour output is disabled if set. See: https://no-color.org/\n"
+           "This can also be specified on the command line via '-n'. Example commands as shown below:\n\n"
            "For Windows 'cmd.exe' use:            set \"NO_COLOR=1\" & opass\n"
            "For Windows 'Powershell' use:         $env:NO_COLOR=1 ; opass\n"
-           "For macOS, Linux, 'Unix shells' use:  NO_COLOR=1 opass\n\n\n"
-           "Help Summary: the following command line switches can be used:\n\n"
-           "  -e, --export     Dump the full list of three letter words and marks.\n"
-           "  -h, --help       Show this help information.\n"
-           "  -q, --quick      Just offer a password and no other output.\n"
-           "  -v, --version    Display the version of the program and password stats.\n");
+           "For macOS, Linux, 'Unix shells' use:  NO_COLOR=1 opass\n"
+           "Alternative for all is to use:        opass -n\n\n\n"
+);
 }
 
 
@@ -134,9 +137,22 @@ void show_version(const char *program_name, const int numPassSuggestions, const 
         char Build_Type[] = "Release";
     #endif
 
+    #ifdef __clang__
+        const char compilerVersion[] = __clang_version__;
+    #elif __GNUC__
+        const char compilerVersion[] = __VERSION__;
+        #elif _MSC_VER
+            const char compilerVersion[] = _MSC_FULL_VER;
+        #elif __MINGW64__
+            const char compilerVersion[] = __MINGW64_VERSION_MAJOR
+        #else
+            const char compilerVersion[] = "UNKNOWN";
+    #endif
+
     printf("\n'%s' is version: '%s'.\n", program_name, version);
-    printf("Compiled on: '%s @ %s' with C source built as '%s'.\n",__DATE__,__TIME__,Build_Type);
+    printf("Compiled on: '%s @ %s'.\n",__DATE__,__TIME__);
     puts("Copyright (c) 2021 Simon Rowe.\n");
+    printf("C source built as '%s' using compiler '%s'.\n\n",Build_Type,compilerVersion);
     puts("For licenses and further information visit:");
     puts("- https://github.com/wiremoons/opass/");
 
@@ -154,7 +170,7 @@ void show_version(const char *program_name, const int numPassSuggestions, const 
     printf("%d\n", numPassSuggestions);
     printf("  - Number of words per suggested password: ");
     printf("%d\n", wordsRequired);
-    printf("  - Number 0f three letter words total length will be: ");
+    printf("  - Number of three letter words total length will be: ");
     printf("%d\n", (wordsRequired * 3));
     printf("  - Total offered password length will be: ");
     printf("%d\n\n", ((wordsRequired * 3)) + 3);
