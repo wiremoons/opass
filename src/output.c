@@ -178,7 +178,7 @@ void show_version(const char *program_name, const int numPassSuggestions, const 
 }
 
 /*
- * dump out the complete list of words and marks held in our arrays
+ * dump out the complete list of words and marks held in our arrays.
  */
 /**
  * @brief Dump out to the screen the complete list of words and marks held in our programs arrays.
