@@ -36,6 +36,7 @@ int set_number_passwords(void);
 int set_number_words(void);
 void with_spaces(char *str_password);
 void with_capitilised_words(char *str_password);
+void set_nocolor_env();
 
 
 /**
