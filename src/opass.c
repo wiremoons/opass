@@ -211,12 +211,12 @@ void get_quick(int wordsRequired, int wordArraySize)
 }
 
 /**
- * @brief Request for no colour output requested via command line option '-n' or '--nocolor'
+ * @brief Ensure no colour output is set in OS env as requested via command line option '-n' or '--nocolor'.
  * @return no return
  */
 void set_nocolor_env()
 {
-    if ( setenv("NO_COLOR", "1", 1) == -1 ) {
+    if ( putenv("NO_COLOR=1") != 0 ) {
         fprintf(stderr,
                 "Error setting 'NO_COLOR' env in function 'set_nocolor_env()' in file '%s' at line '%d'.\nERROR : %s\n",
                 __FILE__, __LINE__, strerror(errno));
